@@ -1,15 +1,15 @@
 from org.transcrypt.stubs.browser import *
 import random
 
-#Wenmiao's code
-def gen_random_int(number: int, seed: int) -> list[int]:
+
+def gen_random_int(number: int, seed: int) -> list[int]: #Wenmiao's code
     result = list(range(number))
     random.seed(seed)
     random.shuffle (result)
     
     return result
 
-def generate():
+def generate(): #Wenmiao's code
 	number = 10
 	seed = 200
 
@@ -32,6 +32,14 @@ def generate():
 			array_str = array_str + ","
 		else:
 			array_str = array_str + "."
+
+
+		
+
+	# This line is to placed the string into the HTML
+	# under div section with the id called "generate"	
+	document.getElementById("generate").innerHTML = array_str
+
 
 
 def sort1(array: list[int]) -> None: # annie's code

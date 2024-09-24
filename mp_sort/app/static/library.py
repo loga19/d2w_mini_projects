@@ -129,7 +129,7 @@ def sortnumber2():
 	
 	print(value_array)
 
-	array_str: str = array_to_str(value_array)
+	array_str: str = ",".join(value_array)
 
 	document.getElementById("sorted").innerHTML = array_str
 

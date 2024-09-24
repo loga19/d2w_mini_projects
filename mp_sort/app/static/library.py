@@ -108,7 +108,7 @@ def sortnumber2():
 	# written code here - varsh
 	value_array : list[int] = value.split(',')
 
-	sort(value_array)
+	sort2(value_array)
 
 	array_str: str = array_to_str(value_array)
 

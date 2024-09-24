@@ -85,7 +85,7 @@ def sortnumber1():
 
 	# written code here - annie
 	gotten_str = document.getElementById("generate").innerHTML
-
+	
 	gotten_str_to_array : list[int] = str_to_int(gotten_str) # returns list[int]
 
 	sort1(gotten_str_to_array) # returns nothing, just sorts list
@@ -122,13 +122,8 @@ def sortnumber2():
 		return
 
 	# written code here - varsh
-	value_array : list[int] = value.split(',')
-	print(value_array)
-	
+	value_array : list[int] = value.split(',')	
 	sort2(value_array)
-	
-	print(value_array)
-
 	array_str: str = ",".join(value_array)
 
 	document.getElementById("sorted").innerHTML = array_str

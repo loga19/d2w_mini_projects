@@ -2,14 +2,14 @@ from org.transcrypt.stubs.browser import *
 import random
 
 
-def gen_random_int(number: int, seed: int) -> list[int]:
+def gen_random_int(number: int, seed: int) -> list[int]: #Wenmiao's code
     result = list(range(number))
     random.seed(seed)
     random.shuffle (result)
     
     return result
 
-def generate():
+def generate(): #Wenmiao's code
 	number = 10
 	seed = 200
 

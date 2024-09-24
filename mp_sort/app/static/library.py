@@ -42,8 +42,9 @@ def str_to_int(long_str: str) -> list[int]: # annie's code
 	str_ls: list[str] = long_str.split(",") # split the string with ","
 	int_ls: list[int] = [] # to be filled later
 	for str_ele in str_ls: # str_ele are individual string numbers
-		make_int = int(str_ele)
-		int_ls.append(make_int) # create the int list
+		if str_ele != ".": # because "generate" has '.' and "number" may not (html id)
+			make_int = int(str_ele)
+			int_ls.append(make_int) # create the int list
 		return int_ls
 
 def array_to_str(int_ls: list[int]) -> str: # annie's code

@@ -1,8 +1,13 @@
 from org.transcrypt.stubs.browser import *
 import random
 
-def gen_random_int(number, seed):
-	pass
+#Wenmiao's code
+def gen_random_int(number: int, seed: int) -> list[int]:
+    result = list(range(number))
+    random.seed(seed)
+    random.shuffle (result)
+    
+    return result
 
 def generate():
 	number = 10
@@ -10,19 +15,24 @@ def generate():
 
 	# call gen_random_int() with the given number and seed
 	# store it to the variable array
-	pass
-
-	array = None
+	
+	array = gen_random_int(number, seed)
 	# convert the items into one single string 
 	# the number should be separated by a comma
 	# and a full stop should end the string.
-	pass
 
-	array_str = None
+	array_str = ""
+	n = len(array)
+	for i, element in enumerate(array):
+		array_str = array_str + str(element)
+		#trace the index of the last element in the list.
+		#As long as it is not the last element, add comma.
+		#else, add full stop.
+		if i < n-1:
+			array_str = array_str + ","
+		else:
+			array_str = array_str + "."
 
-	# This line is to placed the string into the HTML
-	# under div section with the id called "generate"	
-	document.getElementById("generate").innerHTML = array_str
 
 def sort1(array: list[int]) -> None: # annie's code
 	n = len(array)
@@ -99,7 +109,7 @@ def sortnumber2():
 	'''
 	# The following line get the value of the text input called "numbers"
 	value = document.getElementsByName("numbers")[0].value
-
+	print(value)
 	# Throw alert and stop if nothing in the text input
 	if value == "":
 		window.alert("Your textbox is empty")
@@ -107,8 +117,11 @@ def sortnumber2():
 
 	# written code here - varsh
 	value_array : list[int] = value.split(',')
-
+	print(value_array)
+	
 	sort2(value_array)
+	
+	print(value_array)
 
 	array_str: str = array_to_str(value_array)
 

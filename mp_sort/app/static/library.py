@@ -40,8 +40,6 @@ def generate(): #Wenmiao's code
 	# under div section with the id called "generate"	
 	document.getElementById("generate").innerHTML = array_str
 
-
-
 def sort1(array: list[int]) -> None: # annie's code
 	n = len(array)
 	swapped = True

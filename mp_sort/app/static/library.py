@@ -24,6 +24,35 @@ def generate():
 	# under div section with the id called "generate"	
 	document.getElementById("generate").innerHTML = array_str
 
+def sort(array: list[int]) -> None: # annie's code
+	n = len(array)
+	swapped = True
+	while swapped == True:
+		swapped = False
+		new_n = n
+		for i in range(1,n):
+			left = array[i-1]
+			right = array[i]
+			if left>right:
+				array[i-1], array[i] = right, left
+				swapped = True
+				n = new_n
+
+def str_to_int(long_str: str) -> list[int]: # annie's code
+	str_ls: list[str] = long_str.split(",") # split the string with ","
+	int_ls: list[int] = [] # to be filled later
+	for str_ele in str_ls: # str_ele are individual string numbers
+		make_int = int(str_ele)
+		int_ls.append(make_int) # create the int list
+		return int_ls
+
+def array_to_str(int_ls: list[int]) -> str: # annie's code
+	final_str: str = '' # to be filled later
+	length_of_array = len(int_ls)
+	for i in range(length_of_array-1): # i are indexes (integers)
+		final_str += str(int_ls[i]) + ','
+	final_str += str(int_ls[-1]) # since final term shouldn't have "," behind
+	return final_str
 
 def sortnumber1():
 	'''	This function is used in Exercise 1.
@@ -35,10 +64,16 @@ def sortnumber1():
 		- call your sort function, either bubble sort or insertion sort
 		- create a string of the sorted numbers and store it in array_str
 	'''
-	pass
 
-	array_str = None
-	
+	# written code here - annie
+	gotten_str = document.getElementById("generate").innerHTML
+
+	gotten_str_to_array : list[int] = str_to_int(gotten_str) # returns list[int]
+
+	sort(gotten_str_to_array) # returns nothing, just sorts list
+
+	array_str: str = array_to_str(gotten_str_to_array)
+
 	document.getElementById("sorted").innerHTML = array_str
 
 def sortnumber2():
@@ -60,11 +95,12 @@ def sortnumber2():
 		window.alert("Your textbox is empty")
 		return
 
-	# Your code should start from here
-	# store the final string to the variable array_str
-	pass
+	# written code here - annie
+	value_array : list[int] = str_to_int(value)
 
-	array_str = None
+	sort(value_array)
+
+	array_str: str = array_to_str(value_array)
 
 	document.getElementById("sorted").innerHTML = array_str
 

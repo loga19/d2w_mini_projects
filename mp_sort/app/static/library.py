@@ -24,7 +24,7 @@ def generate():
 	# under div section with the id called "generate"	
 	document.getElementById("generate").innerHTML = array_str
 
-def sort(array: list[int]) -> None: # annie's code
+def sort1(array: list[int]) -> None: # annie's code
 	n = len(array)
 	swapped = True
 	while swapped == True:
@@ -37,6 +37,7 @@ def sort(array: list[int]) -> None: # annie's code
 				array[i-1], array[i] = right, left
 				swapped = True
 				n = new_n
+
 
 def str_to_int(long_str: str) -> list[int]: # annie's code
 	str_ls: list[str] = long_str.split(",") # split the string with ","
@@ -71,11 +72,19 @@ def sortnumber1():
 
 	gotten_str_to_array : list[int] = str_to_int(gotten_str) # returns list[int]
 
-	sort(gotten_str_to_array) # returns nothing, just sorts list
+	sort1(gotten_str_to_array) # returns nothing, just sorts list
 
 	array_str: str = array_to_str(gotten_str_to_array)
 
 	document.getElementById("sorted").innerHTML = array_str
+
+def sort2(array: list[int]) -> None: # varsh's code
+	n = len(array)
+	for big_idx in range(1,n):
+		small_idx = big_idx
+		while small_idx > 0 and array[small_idx - 1] > array[small_idx]:
+			array[small_idx - 1], array[small_idx] = array[small_idx], array[small_idx - 1]
+			small_idx -= 1 
 
 def sortnumber2():
 	'''	This function is used in Exercise 2.
@@ -96,8 +105,8 @@ def sortnumber2():
 		window.alert("Your textbox is empty")
 		return
 
-	# written code here - annie
-	value_array : list[int] = str_to_int(value)
+	# written code here - varsh
+	value_array : list[int] = value.split(',')
 
 	sort(value_array)
 

@@ -98,9 +98,11 @@ def sort2(array: list[int]) -> None: # varsh's code
 	n = len(array)
 	for big_idx in range(1,n):
 		small_idx = big_idx
-		while small_idx > 0 and array[small_idx - 1] > array[small_idx]:
-			array[small_idx - 1], array[small_idx] = array[small_idx], array[small_idx - 1]
-			small_idx -= 1 
+		temp = array[small_idx]
+		while (small_idx > 0) and array[small_idx - 1] > temp:
+			array[small_idx] = array[small_idx -1]
+			small_idx -= 1
+		array[small_idx] = temp 
 
 def sortnumber2():
 	'''	This function is used in Exercise 2.
@@ -122,10 +124,9 @@ def sortnumber2():
 		return
 
 	# written code here - varsh
-	value_array : list[int] = value.split(',')	
+	value_array : list[int] = value.split(',')
 	sort2(value_array)
-	array_str: str = ",".join(value_array) + "."
-
+	array_str: str = ",".join(value_array)
 	document.getElementById("sorted").innerHTML = array_str
 
 

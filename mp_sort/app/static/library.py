@@ -15,26 +15,25 @@ def generate(): #Wenmiao's code
 
 	# call gen_random_int() with the given number and seed
 	# store it to the variable array
-	
 	array = gen_random_int(number, seed)
+
+	pass
+
 	# convert the items into one single string 
 	# the number should be separated by a comma
 	# and a full stop should end the string.
-
 	array_str = ""
-	n = len(array)
-	for i, element in enumerate(array):
-		array_str = array_str + str(element)
+
+	for i in array:
 		#trace the index of the last element in the list.
 		#As long as it is not the last element, add comma.
 		#else, add full stop.
-		if i < n-1:
-			array_str = array_str + ","
+		if i < number - 1:
+			array_str = array[i] + ","
 		else:
-			array_str = array_str + "."
+			array_str = array[i] + "."
 
-
-		
+	pass
 
 	# This line is to placed the string into the HTML
 	# under div section with the id called "generate"	
@@ -117,7 +116,7 @@ def sortnumber2():
 	'''
 	# The following line get the value of the text input called "numbers"
 	value = document.getElementsByName("numbers")[0].value
-	print(value)
+	
 	# Throw alert and stop if nothing in the text input
 	if value == "":
 		window.alert("Your textbox is empty")

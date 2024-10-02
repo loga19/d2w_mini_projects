@@ -1,6 +1,7 @@
 from org.transcrypt.stubs.browser import *
 import random
 
+#python -m transcrypt -b -n library
 
 def gen_random_int(number: int, seed: int) -> list[int]: #Wenmiao's code
     result = list(range(number))
@@ -9,35 +10,32 @@ def gen_random_int(number: int, seed: int) -> list[int]: #Wenmiao's code
     
     return result
 
-def generate(): #Wenmiao's code
-	number = 10
-	seed = 200
-
-	# call gen_random_int() with the given number and seed
-	# store it to the variable array
-	array = gen_random_int(number, seed)
-
-	pass
-
-	# convert the items into one single string 
-	# the number should be separated by a comma
-	# and a full stop should end the string.
-	array_str = ""
-
-	for i in array:
-		#trace the index of the last element in the list.
-		#As long as it is not the last element, add comma.
-		#else, add full stop.
-		if i < number - 1:
-			array_str = array[i] + ","
-		else:
-			array_str = array[i] + "."
-
-	pass
-
-	# This line is to placed the string into the HTML
-	# under div section with the id called "generate"	
-	document.getElementById("generate").innerHTML = array_str
+def generate():	# Wenmiao's code
+    number = 10
+    seed = 200
+    
+    # call gen_random_int() with the given number and seed
+    # store it to the variable array
+    array = gen_random_int(number, seed)
+    
+    # convert the items into one single string 
+    # the number should be separated by a comma
+    # and a full stop should end the string.
+    array_str = ""
+    
+    for i, element in enumerate(array):
+        #trace the index of the last element in the list.
+        #As long as it is not the last element, add comma.
+        #else, add full stop.
+        if i < (number-1):
+            array_str += str(element) + ","
+        else:
+            array_str += str(element) + '.'
+    # pass
+    
+    # This line is to placed the string into the HTML
+    # under div section with the id called "generate"
+    document.getElementById("generate").innerHTML = array_str
 
 def sort1(array: list[int]) -> None: # annie's code
 	n = len(array)
@@ -54,22 +52,22 @@ def sort1(array: list[int]) -> None: # annie's code
 				n = new_n
 
 
-def str_to_int(long_str: str) -> list[int]: # annie's code
-	str_ls: list[str] = long_str.split(",") # split the string with ","
-	int_ls: list[int] = [] # to be filled later
-	for str_ele in str_ls: # str_ele are individual string numbers
-		if str_ele != ".": # because "generate" has '.' and "number" may not (html id)
-			make_int = int(str_ele)
-			int_ls.append(make_int) # create the int list
-		return int_ls
+#def str_to_int(long_str: str) -> list[int]: # annie's code
+#	str_ls: list[str] = long_str.split(",") # split the string with ","
+#	int_ls: list[int] = [] # to be filled later
+#	for str_ele in str_ls: # str_ele are individual string numbers
+#		if str_ele != ".": # because "generate" has '.' and "number" may not (html id)
+#			make_int = int(str_ele)
+#			int_ls.append(make_int) # create the int list
+#	return int_ls
 
-def array_to_str(int_ls: list[int]) -> str: # annie's code
-	final_str: str = '' # to be filled later
-	length_of_array = len(int_ls)
-	for i in range(length_of_array-1): # i are indexes (integers)
-		final_str += str(int_ls[i]) + ','
-	final_str += str(int_ls[-1]) # since final term shouldn't have "," behind
-	return final_str
+#def array_to_str(int_ls: list[int]) -> str: # annie's code
+#	final_str: str = '' # to be filled later
+#	length_of_array = len(int_ls)
+#	for i in range(length_of_array-1): # i are indexes (integers)
+#		final_str += str(int_ls[i]) + ','
+#	final_str += str(int_ls[-1]) # since final term shouldn't have "," behind
+#	return final_str
 
 def sortnumber1():
 	'''	This function is used in Exercise 1.
@@ -83,15 +81,19 @@ def sortnumber1():
 	'''
 
 	# written code here - annie
-	gotten_str = document.getElementById("generate").innerHTML
-	
-	gotten_str_to_array : list[int] = str_to_int(gotten_str) # returns list[int]
-
-	sort1(gotten_str_to_array) # returns nothing, just sorts list
-
-	array_str: str = array_to_str(gotten_str_to_array)
-
-	document.getElementById("sorted").innerHTML = array_str
+	string = document.getElementById("generate").innerHTML
+	array_str: str = string[:-1] # since last term has a fullstop AND doesn't get separated with the split by ","
+	split_str: list[str] = array_str.split(",") # now we split the terms hee hee~
+	array: list[int] = [] # to be filled with int and sorted later
+	for i in split_str:
+		#if i != ".":
+		array.append(int(i)) # to make int array
+	sort1(array) # should return None but sort array
+	final_str = ""
+	for i in range(len(array)): # i is an index, not an element
+		final_str += str(array[i]) + ","
+	final_str += str(array[-1])
+	document.getElementById("sorted").innerHTML = final_str
 
 def sort2(array: list[int]) -> None: # varsh's code
 	n = len(array)

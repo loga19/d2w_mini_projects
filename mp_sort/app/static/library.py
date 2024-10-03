@@ -91,8 +91,12 @@ def sortnumber1():
 	sort1(array) # should return None but sort array
 	final_str = ""
 	for i in range(len(array)): # i is an index, not an element
-		final_str += str(array[i]) + ","
-	final_str += str(array[-1])
+		final_str += str(array[i])
+		if i != len(array)-1:
+			final_str += ","
+		else:
+			final_str += "."
+	#final_str += str(array[-1])
 	document.getElementById("sorted").innerHTML = final_str
 
 def sort2(array: list[int]) -> None: # varsh's code

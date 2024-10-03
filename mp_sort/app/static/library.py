@@ -125,7 +125,7 @@ def sortnumber2():
 		return
 
 	# written code here - varsh
-	value_array : list[int] = value.split(',')
+	value_array : list[int] = list(map(int, value.split(',')))
 	sort2(value_array)
 	array_str: str = ",".join(value_array)
 	document.getElementById("sorted").innerHTML = array_str

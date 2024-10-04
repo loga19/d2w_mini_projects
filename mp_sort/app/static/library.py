@@ -4,13 +4,13 @@ from random import *
 #python -m transcrypt -b -n library
 
 def gen_random_int(number: int, seed: int) -> list[int]: #Wenmiao's code
-    result = random.sample(range(0,100),10)
+    result = [int(random.random() * 100) for index in range (number)]
     random.seed(seed)
     random.shuffle (result)
     
     return result
 
-def generate():	# Wenmiao's code
+def generate():	
     number = 10
     seed = 200
     

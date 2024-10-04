@@ -1,10 +1,10 @@
 from org.transcrypt.stubs.browser import *
-import random
+from random import *
 
 #python -m transcrypt -b -n library
 
 def gen_random_int(number: int, seed: int) -> list[int]: #Wenmiao's code
-    result = list(range(number))
+    result = random.sample(range(0,100),10)
     random.seed(seed)
     random.shuffle (result)
     
@@ -109,6 +109,13 @@ def sort2(array: list[int]) -> None: # varsh's code
 			small_idx -= 1
 		array[small_idx] = temp 
 
+def safe_eval(expression):
+    try:
+        return int(expression)									# Use eval to calculate the expression and convert to integer
+    except (SyntaxError, ValueError, TypeError):
+        window.alert("Please enter only numbers separated by commas.")		# If got error prompt user to enter correct values
+        return None
+
 def sortnumber2():
 	'''	This function is used in Exercise 2.
 		The function is called when the sort button is clicked.
@@ -124,14 +131,21 @@ def sortnumber2():
 	value = document.getElementsByName("numbers")[0].value
 	
 	# Throw alert and stop if nothing in the text input
-	if value == "":
-		window.alert("Your textbox is empty")
+	if value == "":												# If value(from HTML element with ID "numbers") is an empty string (textbox is empty)
+		window.alert("Your textbox is empty")					# Prompt user that textbox is empty
 		return
 
 	# written code here - varsh
-	value_array : list[int] = list(map(int, value.split(',')))
-	sort2(value_array)
-	array_str: str = ",".join(value_array)
-	document.getElementById("sorted").innerHTML = array_str
+	value = value.replace(" ", "")								# Remove ALL whitespace
+	str_array: list[string] = value.split()						# Split string, store into array
+	
+	
+	int_array : list[int] = list(map(safe_eval, str_array))		# Try to convert all elements in array, from string to int datatype
 
+	if None in int_array:										# Handle the case where safe_eval returned None for any element
+		return													# Stop further execution if invalid input was detected
+
+	sort2(int_array)											# Sort integer array (in place, no copy) using function sort2 (insertion sort algo) 
+	array_str: str = ",".join(map(str, int_array))				# Convert integers back to strings and join with commas
+	document.getElementById("sorted").innerHTML = array_str		# Display string onto HTML page at the element with ID "sorted"
 

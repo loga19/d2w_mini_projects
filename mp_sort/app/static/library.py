@@ -1,14 +1,16 @@
 from org.transcrypt.stubs.browser import *
 from random import *
 
-#python -m transcrypt -b -n library
 
 def gen_random_int(number: int, seed: int) -> list[int]: #Wenmiao's code
-    result = [int(random.random() * 100) for index in range (number)]
-    random.seed(seed)
-    random.shuffle (result)
-    
-    return result
+	# Create a list of integers from 0 to number
+	result = []
+	for i in range(number):
+		# Generate a new number based on the seed
+		result.append(seed)
+		
+	random.shuffle(result)
+	return result
 
 def generate():	
     number = 10
@@ -24,9 +26,9 @@ def generate():
     array_str = ""
     
     for i, element in enumerate(array):
-        #trace the index of the last element in the list.
-        #As long as it is not the last element, add comma.
-        #else, add full stop.
+        # trace the index of the last element in the list.
+        # As long as it is not the last element, add comma.
+        # else, add full stop.
         if i < (number-1):
             array_str += str(element) + ","
         else:

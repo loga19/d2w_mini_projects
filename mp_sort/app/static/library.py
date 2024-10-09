@@ -4,14 +4,13 @@ from random import *
 
 def gen_random_int(number: int, seed: int) -> list[int]: #Wenmiao's code
 	# Create a list of integers from 0 to number
-	result = []
-	for i in range(number):
-		# Generate a new number based on the seed
-		result.append(result)
-		
-	random.shuffle(result)
-	return result
-
+	my_list = []
+	for i in range(0, number):
+		my_list.append(i)
+		random.seed(seed)
+		random.shuffle(my_list)
+	return my_list
+	
 def generate():	
     number = 10
     seed = 200

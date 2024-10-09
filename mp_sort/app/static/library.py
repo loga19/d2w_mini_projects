@@ -139,7 +139,7 @@ def sortnumber2():
 
 	# written code here - varsh
 	value = value.replace(" ", "")								# Remove ALL whitespace
-	str_array: list[string] = value.split()						# Split string, store into array
+	str_array: list[string] = value.split(",")						# Split string, store into array
 	
 	
 	int_array : list[int] = list(map(safe_eval, str_array))		# Try to convert all elements in array, from string to int datatype

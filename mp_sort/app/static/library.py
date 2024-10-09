@@ -1,10 +1,11 @@
 from org.transcrypt.stubs.browser import *
-from random import *
+import random
 
 
 def gen_random_int(number: int, seed: int) -> list[int]: #Wenmiao's code
 	# Create a list of integers from 0 to number
 	my_list = []
+	print("test")
 	for i in range(0, number):
 		my_list.append(i)
 		random.seed(seed)
@@ -129,7 +130,7 @@ def sortnumber2():
 		- create a string of the sorted numbers and store it in array_str
 	'''
 	# The following line get the value of the text input called "numbers"
-	value = document.getElementsByName("numbers")[0].value
+	value = document.getElementsByName("numbers").value
 	
 	# Throw alert and stop if nothing in the text input
 	if value == "":												# If value(from HTML element with ID "numbers") is an empty string (textbox is empty)

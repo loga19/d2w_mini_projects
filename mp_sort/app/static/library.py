@@ -7,7 +7,7 @@ def gen_random_int(number: int, seed: int) -> list[int]: #Wenmiao's code
 	result = []
 	for i in range(number):
 		# Generate a new number based on the seed
-		result.append(seed)
+		result.append(result)
 		
 	random.shuffle(result)
 	return result

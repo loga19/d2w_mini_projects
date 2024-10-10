@@ -130,7 +130,7 @@ def sortnumber2():
 		- create a string of the sorted numbers and store it in array_str
 	'''
 	# The following line get the value of the text input called "numbers"
-	value = document.getElementsByName("numbers").value
+	value = document.getElementsByName("numbers").innerHTML
 	
 	# Throw alert and stop if nothing in the text input
 	if value == "":												# If value(from HTML element with ID "numbers") is an empty string (textbox is empty)
@@ -139,7 +139,7 @@ def sortnumber2():
 
 	# written code here - varsh
 	value = value.replace(" ", "")								# Remove ALL whitespace
-	str_array: list[string] = value.split(",")						# Split string, store into array
+	str_array: list[str] = value.split(",")						# Split string, store into array
 	
 	
 	int_array : list[int] = list(map(safe_eval, str_array))		# Try to convert all elements in array, from string to int datatype

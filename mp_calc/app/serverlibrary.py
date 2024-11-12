@@ -1,6 +1,6 @@
 
 
-def mergesort(array, byfunc=None):
+def mergesort(array, byfunc=None):  # Wenmiao's code
     # Call the recursive function
     p = 0   # first index
     r = len(array) - 1   # last index
@@ -17,7 +17,7 @@ def merge(array, p, q, r, byfunc):
     left_array = array[p:q + 1]   # slice from p to q
     right_array = array[q + 1:r + 1]   # slice from q+1 to r
     
-    # Initial indexes and size
+    # initialize indexes and size
     left_index = 0
     right_index = 0
     main_index = p

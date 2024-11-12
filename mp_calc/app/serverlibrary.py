@@ -1,7 +1,66 @@
 
 
 def mergesort(array, byfunc=None):
-  pass
+    # Call the recursive function
+    p = 0   # first index
+    r = len(array) - 1   # last index
+    mergesort_recursive(array, p, r, byfunc)
+
+def mergesort_recursive(array, p, r, byfunc):
+    if p < r:   #if there is more than 1 item in the sub array
+        q = (p + r) // 2  # middle index
+        mergesort_recursive(array, p, q, byfunc)  # merge sort the first half
+        mergesort_recursive(array, q + 1, r, byfunc)  # merge sort the second half
+        merge(array, p, q, r, byfunc)  # merge two sorted arrays
+
+def merge(array, p, q, r, byfunc):
+    left_array = array[p:q + 1]   # slice from p to q
+    right_array = array[q + 1:r + 1]   # slice from q+1 to r
+    
+    # Initial indexes and size
+    left_index = 0
+    right_index = 0
+    main_index = p
+
+    left_array_size = len (left_array)
+    right_array_size = len (right_array)
+
+    # while compared items are within the range of the arrays
+    while left_index < left_array_size and right_index < right_array_size:
+        # if byfunc is provided
+        if byfunc:
+            # if left < right, put left item to main array
+            if byfunc(left_array[left_index]) <= byfunc(right_array[right_index]):
+                array[main_index] = left_array[left_index]
+                left_index += 1  # move to the next item in left array
+            else:
+                array[main_index] = right_array[right_index]
+                right_index += 1
+            main_index += 1  # move to the next place in main array
+
+        # if byfunc is not provided
+        else:
+            # if left < right, put left item to main array
+            if left_array[left_index] <= right_array[right_index]:
+                array[main_index] = left_array[left_index]
+                left_index += 1  # move to the next item in left array
+            else:
+                array[main_index] = right_array[right_index]
+                right_index += 1
+            main_index += 1  # move to the next place in main array
+    
+    # if right array has no more item to compare:
+    while left_index < left_array_size:
+        array[main_index] = left_array[left_index]
+        left_index += 1
+        main_index += 1
+    
+    # if left array has no more item to compare:
+    while right_index < right_array_size:
+        array[main_index] = right_array[right_index]
+        right_index += 1
+        main_index += 1
+
 
 class Stack:
   def __init__(self, first=None):

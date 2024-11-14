@@ -1,5 +1,3 @@
-
-
 def mergesort(array, byfunc=None):  # Wenmiao's code
     # Call the recursive function
     p = 0   # first index
@@ -144,6 +142,42 @@ class EvaluateExpression:
     # Push the result back onto the operand stack
     operand_stack.push(result)
   pass
+
+  def evaluate(self):
+    operand_stack = Stack()
+    operator_stack = Stack()
+    expression = self.insert_space()
+    tokens = expression.split()
+
+    for token in tokens:
+            if token.isdigit():  # If the token is an operand (number)
+                operand_stack.push(int(token))  # Push as integer
+            elif token == '(':
+                operator_stack.push(token)
+            elif token == ')':
+                # Process until we find '('
+                while not operator_stack.is_empty and operator_stack.peek() != '(':
+                    self.process_operator(operand_stack, operator_stack)
+                operator_stack.pop()  # Discard the '('
+            elif token in '+-':
+                # Process all operators on the top of the stack with higher or equal precedence
+                while (not operator_stack.is_empty and operator_stack.peek() not in '()'):
+                    self.process_operator(operand_stack, operator_stack)
+                operator_stack.push(token)
+            elif token in '*/':
+                # Process all '*' or '/' operators on the top of the stack
+                while (not operator_stack.is_empty and operator_stack.peek() in '*/'):
+                    self.process_operator(operand_stack, operator_stack)
+                operator_stack.push(token)
+
+    # Phase 2: Process all remaining operators
+    while not operator_stack.is_empty:
+        self.process_operator(operand_stack, operator_stack)
+
+    # Final result should be at the top of operand stack
+    return operand_stack.pop()
+
+
 
 
 def get_smallest_three(challenge):

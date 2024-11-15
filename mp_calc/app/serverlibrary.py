@@ -227,8 +227,10 @@ class EvaluateExpression:
     elif i == "*":
       result = first * second
     elif i == "/":
-      if first == 0 or second == 0:
+      if first == 0 or second == 0:   # Varsh -- Account for Zero Division Error
         result = 0
+#     elif type(first) == float or type(second) == float:
+#       result = first / second  # float division 
       else:
         result = first // second # integer division
     operand_stack.push(result)

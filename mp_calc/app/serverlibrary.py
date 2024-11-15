@@ -207,14 +207,14 @@ class EvaluateExpression:
       self.expr = new_expr
 
   def insert_space(self):
-        # Insert space around operators and parenthesis
+    # Insert space around operators and parenthesis
     spaced_expr = ""
     for char in self.expr:
       if char in "+-*/()":
         spaced_expr += f" {char} "  # Add spaces around operators and parentheses
       else:
         spaced_expr += char
-    return spaced_expr  # Return as-is to preserve spaces around consecutive operators
+    return spaced_expr
 
   def process_operator(self, operand_stack, operator_stack):
     i = operator_stack.pop()
@@ -227,7 +227,10 @@ class EvaluateExpression:
     elif i == "*":
       result = first * second
     elif i == "/":
-      result = first // second # integer division
+      if first == 0 or second == 0:
+        result = 0
+      else:
+        result = first // second # integer division
     operand_stack.push(result)
     
   def evaluate(self):
@@ -237,31 +240,35 @@ class EvaluateExpression:
     tokens = expression.split()
 
     for token in tokens:
-            if token.isdigit():  # If the token is an operand (number)
-                operand_stack.push(int(token))  # Push as integer
-            elif token == '(':
-                operator_stack.push(token)
-            elif token == ')':
-                # Process until we find '('
-                while not operator_stack.is_empty and operator_stack.peek() != '(':
-                    self.process_operator(operand_stack, operator_stack)
-                operator_stack.pop()  # Discard the '('
-            elif token in '+-':
-                # Process all operators on the top of the stack with higher or equal precedence
-                while (not operator_stack.is_empty and operator_stack.peek() not in '()'):
-                    self.process_operator(operand_stack, operator_stack)
-                operator_stack.push(token)
-            elif token in '*/':
-                # Process all '*' or '/' operators on the top of the stack
-                while (not operator_stack.is_empty and operator_stack.peek() in '*/'):
-                    self.process_operator(operand_stack, operator_stack)
-                operator_stack.push(token)
+      if token.isdigit():  # If the token is an operand (number)
+          operand_stack.push(int(token))  # Push as integer
 
-    # Phase 2: Process all remaining operators
+      elif token == '(':
+          operator_stack.push(token)
+
+      elif token == ')':
+          # Process until we find '('
+          while not operator_stack.is_empty and operator_stack.peek() != '(':
+              self.process_operator(operand_stack, operator_stack)
+          operator_stack.pop()  # Discard the '('
+
+      elif token in '+-':
+          # Process all operators on the top of the stack with higher or equal precedence
+          while (not operator_stack.is_empty and operator_stack.peek() not in '()'):
+              self.process_operator(operand_stack, operator_stack)
+          operator_stack.push(token)
+          
+      elif token in '*/':
+          # Process all '*' or '/' operators on the top of the stack
+          while (not operator_stack.is_empty and operator_stack.peek() in '*/'):
+              self.process_operator(operand_stack, operator_stack)
+          operator_stack.push(token)
+
+    # Process all remaining operators
     while not operator_stack.is_empty:
         self.process_operator(operand_stack, operator_stack)
 
-    # Final result should be at the top of operand stack
+    # Final result at the top of operand stack
     return operand_stack.pop()
 
 
